@@ -57,11 +57,10 @@ int main(int argc, char *argv[]) {
                     printf("Automatic play not implemented yet \n");
                     gameState.endGame=1;
                 }
+
+
             }while(!gameState.endGame); //finish the game when argument endGame is 1
 
-
-            free(gameState.players);
-            free(gameState.map);
             return 0;
 
         }else{

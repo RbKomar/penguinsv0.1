@@ -37,14 +37,13 @@ int checkInputParameters(int nPlayers, int dimx, int dimy, int nPenguins){
     else return 0;
 }
 
-int checkMoveLegal(int dimx,int dimy, IceFloe map[dimx][dimy],int beginX,int beginY,int targetX,int targetY)
+int checkMoveLegal(int dimx,int dimy,IceFloe map[dimx][dimy],int beginX,int beginY,int targetX,int targetY)
 {
     if(map[targetX][targetY].nFish!=0)
     {
         if(beginX==targetX || beginY==targetY){
             if(beginX!=targetX){
-                if(targetX-beginX>0)
-                {
+                if(targetX-beginX>0){
                     for(int i=1;i<targetX-beginX;i++)
                     {
                         if(map[beginX+i][beginY].nFish==0)return 0;

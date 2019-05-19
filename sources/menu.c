@@ -55,8 +55,6 @@ bool menu(int dimx, int dimy, int playerNumber, int penguinsNumber, IceFloe map[
                 players[2].number=3;
                 snPointsForEachPlayer(playerNumber, players);
                 nOfPenguinsForEachPlayer(playerNumber, penguinsNumber, players);
-
-                // saveGame(gamestate, dimx, dimy, icefloes, playerNumber, penguinsNumber);
                 return 0;
             } //For faster testing
 

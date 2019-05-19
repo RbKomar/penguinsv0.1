@@ -24,7 +24,7 @@ void displayBoard(int dimx, int dimy, int nPlayers, IceFloe map[dimx][dimy], Pla
         {
             if(map[i][j].hasPenguin)
             {
-                printf("[ %c%c ]", toupper(players[map[i][j].hasPenguin-1].id[0]), toupper(players[map[i][j].hasPenguin-1].id[1]));
+                printf("[ %c%c]", toupper(players[map[i][j].hasPenguin-1].id[0]), toupper(players[map[i][j].hasPenguin-1].id[1]));
             }
             else
             {
