@@ -37,16 +37,17 @@ int checkInputParameters(int nPlayers, int dimx, int dimy, int nPenguins){
     else return 0;
 }
 
-int checkMoveLegal(int beginX,int beginY,int targetX,int targetY,GameState gameState)
+int checkMoveLegal(int dimx,int dimy, IceFloe map[dimx][dimy],int beginX,int beginY,int targetX,int targetY)
 {
-    if(gameState.map[targetX][targetY].nFish!=0)
+    if(map[targetX][targetY].nFish!=0)
     {
         if(beginX==targetX || beginY==targetY){
             if(beginX!=targetX){
-                if(targetX-beginX>0){
+                if(targetX-beginX>0)
+                {
                     for(int i=1;i<targetX-beginX;i++)
                     {
-                        if(gameState.map[beginX+i][beginY].nFish==0)return 0;
+                        if(map[beginX+i][beginY].nFish==0)return 0;
                     }
                     return 1;
                 }
@@ -54,7 +55,7 @@ int checkMoveLegal(int beginX,int beginY,int targetX,int targetY,GameState gameS
                 {
                     for(int i=-1;i>targetX-beginX;i--)
                     {
-                        if(gameState.map[beginX+i][beginY].nFish==0)return 0;
+                        if(map[beginX+i][beginY].nFish==0)return 0;
                     }
                     return 1;
                 }
@@ -65,13 +66,13 @@ int checkMoveLegal(int beginX,int beginY,int targetX,int targetY,GameState gameS
                 {
                     for(int i=1;i<targetY-beginY;i++)
                     {
-                        if(gameState.map[beginX][beginY+i].nFish==0)return 0;
+                        if(map[beginX][beginY+i].nFish==0)return 0;
                     }
                     return 1;
                 }
                 else if(targetY-beginY<0) {
                     for (int i = -1; i > targetY - beginY; i--) {
-                        if (gameState.map[beginX][beginY + i].nFish == 0)return 0;
+                        if (map[beginX][beginY + i].nFish == 0)return 0;
                     }
                     return 1;
                 }
@@ -84,8 +85,11 @@ int checkMoveLegal(int beginX,int beginY,int targetX,int targetY,GameState gameS
 
 int checkPeng(int dimx,int dimy, IceFloe map[dimx][dimy], Penguin penguin)
 {
-    int canMoveR=1,canMoveL=1,canMoveU=1,canMoveD=1;
-    if(penguin.pengPositionX==dimx)
+    int canMoveR=1;
+    int canMoveL=1;
+    int canMoveU=1;
+    int canMoveD=1;
+    if(penguin.pengPositionX==dimx-1)
     {
         canMoveR=0;
     }
@@ -93,7 +97,7 @@ int checkPeng(int dimx,int dimy, IceFloe map[dimx][dimy], Penguin penguin)
     {
         canMoveL=0;
     }
-    if(penguin.pengPositionY==dimy)
+    if(penguin.pengPositionY==dimy-1)
     {
         canMoveD=0;
     }
@@ -101,25 +105,24 @@ int checkPeng(int dimx,int dimy, IceFloe map[dimx][dimy], Penguin penguin)
     {
         canMoveU=0;
     }
-    if(map[penguin.pengPositionX+1][penguin.pengPositionY].nFish==0 && canMoveR==1)
+    if(!map[penguin.pengPositionX+1][penguin.pengPositionY].nFish && canMoveR)
     {
         canMoveR=0;
     }
-    if(map[penguin.pengPositionX-1][penguin.pengPositionY].nFish==0 && canMoveL==1)
+    if(!map[penguin.pengPositionX-1][penguin.pengPositionY].nFish && canMoveL)
     {
         canMoveL=0;
     }
-    if(map[penguin.pengPositionX][penguin.pengPositionY+1].nFish==0 && canMoveU==1)
+    if(!map[penguin.pengPositionX][penguin.pengPositionY-1].nFish && canMoveU)
     {
         canMoveU=0;
     }
-    if(map[penguin.pengPositionX][penguin.pengPositionY-1].nFish==0 && canMoveD==1)
+    if(!map[penguin.pengPositionX][penguin.pengPositionY+1].nFish && canMoveD)
     {
         canMoveD=0;
     }
-    if(canMoveR==0 && canMoveL==0 && canMoveU==0 && canMoveD==0)
+    if(!canMoveR && !canMoveL && !canMoveU && !canMoveD)
     {
-        printf("This penguin can't move anymore\n");
         return 0;
     }
     else
@@ -127,27 +130,29 @@ int checkPeng(int dimx,int dimy, IceFloe map[dimx][dimy], Penguin penguin)
         return 1;
     }
 }//This checks if a specific penguin has an adjecent empty tile
+//Helpful Tymon CIchowlas the Duck helped with this - M
 
-/*int checkGameEnd(GameState gameState,int playerCount,int pengCount)
-{
-    for(int i=0;i<playerCount;i++)
-    {
-        if(checkPlayerMoves(gameState.players[i],pengCount,gameState.map))
-        {
-            return 1;
-        }
-    }
-    return 0;
-}*/
-
-int checkPlayerMoves(int dimx,int dimy, int nPenguins, IceFloe map[dimx][dimy], Penguin penguin)
+int checkPlayerMoves(int dimx,int dimy, int nPenguins, IceFloe map[dimx][dimy], Player player)
 {
     for(int i=0;i < nPenguins;i++)
     {
-        if(checkPeng(dimx, dimy, map, penguin))
+        if(checkPeng(dimx, dimy, map, player.penguins[i]))
         {
             return 1;
         }
     }
     return 0;
 }
+int checkGameEnd(int dimx, int dimy,int nPenguin,int nPlayers,IceFloe map[dimx][dimy],Player players[])
+{
+    for(int i=0;i<nPlayers;i++)
+    {
+        if(checkPlayerMoves(dimx,dimy,nPenguin,map,players[i]))
+        {
+            return 1;
+        }
+    }
+    return 0;
+}
+
+

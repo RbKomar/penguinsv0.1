@@ -10,6 +10,7 @@
 #include "sources/board.c"
 #include "sources/menu.c"
 #include "sources/penguin.c"
+#include "sources/savehandler.c"
 #include "sources/manualgamemode.c"
 
 
@@ -31,6 +32,10 @@ int main(int argc, char *argv[]) {
             GameState gameState;
             gameState.players = (Player *) malloc(sizeof(Player) * playersNumber);
             gameState.map = (IceFloe **) malloc(sizeof(IceFloe) * dimx * dimy);
+            for(int i=0;i<playersNumber;i++)
+            {
+                gameState.players[i].penguins = (Penguin *) malloc(sizeof(Penguin) * penguinsNumber);
+            }
 
             do{// Playing Phase (PP)
 
@@ -43,7 +48,7 @@ int main(int argc, char *argv[]) {
                 scanf("%d", &ask_auto);
                 if(ask_auto == 1)
                 {
-                    manual_play(dimx, dimy, playersNumber, penguinsNumber, gameState.map, gameState.players);
+                    manual_play(gameState, dimx, dimy, playersNumber, penguinsNumber, gameState.map, gameState.players);
                     gameState.endGame=1;
                 }
                 else
@@ -52,10 +57,11 @@ int main(int argc, char *argv[]) {
                     printf("Automatic play not implemented yet \n");
                     gameState.endGame=1;
                 }
-
-
             }while(!gameState.endGame); //finish the game when argument endGame is 1
 
+
+            free(gameState.players);
+            free(gameState.map);
             return 0;
 
         }else{

@@ -9,10 +9,10 @@
 int checkNumberOfPlayers(int i);
 int checkDimensions(int a, int b);
 int checkNumberOfPenguins(int a);
-int checkMoveLegal(int beginX,int beginY,int targetX,int targetY,GameState gameState);//checks if chosen move is possible
-int checkGameEnd(GameState gameState,int playerCount,int pengCount);//checks if any players have penguins that can move
+int checkMoveLegal(int dimx,int dimy,IceFloe map[dimx][dimy],int beginX,int beginY,int targetX,int targetY);//checks if chosen move is possible
+int checkGameEnd(int dimx, int dimy,int nPenguin,int nPlayers,IceFloe map[dimx][dimy],Player players[]);//checks if any players have penguins that can move
 int checkPeng(int dimx,int dimy, IceFloe map[dimx][dimy], Penguin penguin);//checks if penguin can move
-int checkPlayerMoves(int dimx,int dimy, int nPenguins, IceFloe map[dimx][dimy], Penguin penguin);
+int checkPlayerMoves(int dimx,int dimy, int nPenguins, IceFloe map[dimx][dimy], Player player);
 
 
 #endif //PENGUINS_V0_1_LEGALITY_H

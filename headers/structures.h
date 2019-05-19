@@ -1,4 +1,4 @@
-#ifndef PENGUINS_V0_1_STRUCTURES_H
+
 #define PENGUINS_V0_1_STRUCTURES_H
 
 #define NELEMS(x)  (sizeof (x) / sizeof ((x)[0]))
@@ -32,4 +32,4 @@ typedef struct GameState{
 
 
 
-#endif //PENGUINS_V0_1_STRUCTURES_H
+//#endif //PENGUINS_V0_1_STRUCTURES_H
