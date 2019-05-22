@@ -32,6 +32,7 @@ bool menu(int dimx, int dimy, int playerNumber, int penguinsNumber, IceFloe map[
             case 3:
                 if(countername && counterboard)
                 {
+                    snPointsForEachPlayer(playerNumber, players);
                     return 0;
                 }
                 else
@@ -39,6 +40,12 @@ bool menu(int dimx, int dimy, int playerNumber, int penguinsNumber, IceFloe map[
                     printf("Please create board and assign player names before beginning the game\n");
                     userinput=69;
                 }
+
+            case 121:
+            {
+                loadGame();
+            } //For faster testing
+
 
             case 69:
             {

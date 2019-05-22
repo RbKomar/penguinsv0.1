@@ -5,7 +5,6 @@
 
 
 typedef struct IceFloe{
-    int posX,posY; //position where IceFloe should be generated
     int nFish;
     int hasPenguin;
 } IceFloe;

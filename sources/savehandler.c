@@ -1,4 +1,5 @@
 #include"../headers/savehandler.h"
+#include "errno.h"
 
 void saveGame(GameState gamestate, int dimx, int dimy, IceFloe icefloes[dimx][dimy], int PlayersNumbers){
    static int saveID=1;
@@ -21,5 +22,39 @@ void saveGame(GameState gamestate, int dimx, int dimy, IceFloe icefloes[dimx][di
 
     fclose(save);
     saveID++;
+}
 
+GameState loadGame(){
+
+    GameState gameState;
+    int dimx, dimy;
+    int icefloe;
+
+
+    FILE *load =fopen("..\\saves\\inputboard.txt", "r");
+    if(load == NULL){
+        perror("File opening error");
+        exit(-10);
+    }
+    fscanf(load, "%d %d", &dimx, &dimy);
+    printf("%d %d\n", dimx, dimy);
+
+    gameState.map = (IceFloe **)malloc(sizeof(IceFloe) * dimx * dimy);
+
+    //works till i = 2 TODO: naprawic asap
+    for(int i=0; i<dimy; i++){
+        for(int j=0; j<dimx;j++){
+            fscanf(load, "%d", &icefloe);
+            gameState.map[i][j].hasPenguin = icefloe % 10;
+            icefloe /= 10;
+            gameState.map[i][j].nFish = icefloe % 10;
+            printf("%d%d ", gameState.map[i][j].nFish, gameState.map[i][j].hasPenguin);
+        }
+        printf("\n");
+    }
+
+
+    free(gameState.map);
+    fclose(load);
+    return gameState;
 }
