@@ -35,7 +35,19 @@ void assignPlayerName(Player players[], int playersNumber){
         players[i].number=i+1;
         printf("%s\n",players[i].id);
     } //Name input
-};
+}
 
+void createEmptyPlayers(Player players[], int nPlayers ){
+    char tempname[50]= " xd";
+    for (int i=0;i<nPlayers;i++)
+    {
+        players[i].id = malloc((strlen(tempname) + 1) * sizeof(char));
+        strcpy(players[i].id, tempname);
+        players[i].nPoints=0;
+        players[i].number=0;
+        players[i].penguins = NULL;
+    }
+
+}
 
 

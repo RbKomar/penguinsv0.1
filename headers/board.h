@@ -3,6 +3,7 @@
 
 
 void createBoard(int dimx, int dimy, IceFloe map[dimx][dimy]);
+void createEmptyBoard(int dimx, int dimy, IceFloe map[dimx][dimy]);
 void displayBoard(int dimx, int dimy, int nPlayers, IceFloe map[dimx][dimy], Player players[nPlayers]); //prints number of fish on each floe
 
 

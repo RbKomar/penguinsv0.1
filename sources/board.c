@@ -12,6 +12,18 @@ void createBoard(int dimx, int dimy, IceFloe map[dimx][dimy]){
 
 }
 
+
+void createEmptyBoard(int dimx, int dimy, IceFloe map[dimx][dimy]){
+    for(int i=0; i<dimy; i++){
+        for(int j=0; j<dimx; j++)
+        {
+            map[i][j].nFish = 0;
+            map[i][j].hasPenguin = 0;
+        }
+    }
+
+}
+
 void displayBoard(int dimx, int dimy, int nPlayers, IceFloe map[dimx][dimy], Player players[nPlayers]){
     printf(" ");
     for(int i=0;i<dimy;i++)

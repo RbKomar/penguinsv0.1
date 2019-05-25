@@ -8,7 +8,7 @@
 #include "sources/legality.c"
 #include "sources/player.c"
 #include "sources/board.c"
-#include "sources/savehandler.c"
+#include "sources/savehandleraf.c"
 #include "sources/menu.c"
 #include "sources/penguin.c"
 #include "sources/manualgamemode.c"

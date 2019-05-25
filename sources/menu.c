@@ -43,7 +43,7 @@ bool menu(int dimx, int dimy, int playerNumber, int penguinsNumber, IceFloe map[
 
             case 121:
             {
-                loadGame();
+                loadGame( "..\\saves\\inputboard.txt", "..\\saves\\otputboard.txt");
             } //For faster testing
 
 
