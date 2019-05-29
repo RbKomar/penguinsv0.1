@@ -25,7 +25,6 @@ typedef struct GameState{
     Player *players;
     IceFloe **map;
     bool endGame;
-//    char *phase;
     int phase;
 }GameState;
 

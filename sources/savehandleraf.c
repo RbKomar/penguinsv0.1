@@ -33,7 +33,7 @@ int loadGame(char *inputFilePath, char *outputFilePath){
     FILE *load =fopen(inputFilePath, "r");
     if(load == NULL){
         perror("File opening error");
-        return 0;
+        return 2;
     }
 
 //                      Board dimensions loading
@@ -87,7 +87,7 @@ int loadGame(char *inputFilePath, char *outputFilePath){
 // After all we have two struct-typed arrays map[][] and players[][]
 //----------------------------------------------------------------------------------
 //TODO: assign them to gamemode or somehow connect to the rest of the automative mode
-//TODO: write down the [values checkers] in order to throws error (remember about using perror() )
+//TODO: write down the [values checkers] in order to throws error
 
 //    GameState gameState = { .map = (IceFloe **) malloc(sizeof(IceFloe) * dimx * dimy), .players = (Player *) malloc(sizeof(Player) * nPlayers), .phase = 1 };
 //    free(gameState.map);

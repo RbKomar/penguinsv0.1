@@ -17,7 +17,6 @@ void manual_play(GameState gameState, int dimx, int dimy, int playerNumber, int 
             printf("Input coordinates of target tile in following way  'x y' \n");
             do {
                 scanf("%d %d",&targetY,&targetX);
-                //TODO: scanfed values checker!
                 areProperValuesUsed = placePenguin(dimx, dimy, targetX, targetY, map, players, j, i);
             }while(areProperValuesUsed);
             saveGame(gameState, dimx, dimy, map, playerNumber);

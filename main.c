@@ -12,6 +12,7 @@
 #include "sources/menu.c"
 #include "sources/penguin.c"
 #include "sources/manualgamemode.c"
+#include "sources/automative.c"
 
 
 

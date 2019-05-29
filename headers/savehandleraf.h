@@ -3,5 +3,5 @@
 
 
 void saveGame(GameState gamestate, int dimx, int dimy, IceFloe icefloes[dimx][dimy], int PlayersNumbers);
-int loadGame( char *inputFilePath, char *outputFilePath);
+int loadGame(char *inputFilePath, char *outputFilePath);
 #endif
