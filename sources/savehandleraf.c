@@ -24,6 +24,26 @@ void saveGame(GameState gamestate, int dimx, int dimy, IceFloe icefloes[dimx][di
     saveID++;
 }
 
+void saveAuto(GameState gamestate, int dimx, int dimy, IceFloe icefloes[dimx][dimy], int PlayersNumbers, char *outputFilePath){
+    FILE *save= fopen( outputFilePath, "w" );
+    fprintf(save, "%d %d", dimx, dimy);
+
+    for (int i = 0; i < dimx; i++) {
+        fprintf(save, "\n");
+        for (int j = 0; j < dimy; j++)
+            fprintf(save, "%d%d ", icefloes[i][j].nFish, icefloes[i][j].hasPenguin);
+    }
+
+    fprintf(save, "\n");
+
+    for (int i = 0; i < PlayersNumbers; i++) {
+        fprintf(save, "%s %d %d \n", gamestate.players[i].id, gamestate.players[i].number, gamestate.players[i].nPoints);
+    }
+
+    fclose(save);
+}
+
+
 int loadGame(char *inputFilePath, char *outputFilePath){
 
     int dimx=0, dimy=0, icefloe=0, nPlayers=0, points=0;
